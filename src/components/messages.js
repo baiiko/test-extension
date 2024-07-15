@@ -1,6 +1,7 @@
 import OGIObserver from '../services/observer.js';
+import Data from '../services/data.js';
 
-const observer = new OGIObserver();
+const observer = OGIObserver();
 
 // Observe tab change
 observer(document.querySelector('#messagecontainercomponent'), (elements) => {
@@ -9,6 +10,8 @@ observer(document.querySelector('#messagecontainercomponent'), (elements) => {
     if (element.addedNodes.length === 0) return;
 
     if (!element.target.classList.contains('messagesHolder')) return;
+
+    Data.component = 'messages';
 
     console.log(element);
   });

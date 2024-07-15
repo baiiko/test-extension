@@ -2,7 +2,7 @@
 #set -x     #- for debug
 
 npm i -D
-rm -R ./dist
+rm -R ./dist/*.zip
 mkdir ./dist
 
 VERSION="${1:-`date +%-m.%-d.%-H.%-M`}"
