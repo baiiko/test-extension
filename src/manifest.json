@@ -10,7 +10,8 @@
       "exclude_matches": ["https://*.ogame.gameforge.com/game/admin2/*"],
       "js": ["index.js"],
       "matches": ["https://*.ogame.gameforge.com/game/*"],
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "world": "MAIN"
     }
   ],
   "description": "OGI - To Ogame's infinity and beyond!",
