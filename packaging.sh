@@ -13,6 +13,8 @@ MANIFEST_FILE_NAME_V2="manifestv2.json"
 CSS_BUNDLE_FILE="global.css"
 VERSION_JS_FILE_NAME="util/version.js"
 
+npx tailwindcss -i ./src/assets/css/global.css -o ./src/assets/css/global.min.css
+
 ##
 ## $1: string version in format x.x.x
 ##

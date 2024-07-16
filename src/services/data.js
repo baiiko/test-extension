@@ -19,6 +19,26 @@ class Data {
     this.#save();
   }
 
+  get planets() {
+    return this.#json?.planets;
+  }
+
+  set planets(planets) {
+    this.#json.planets = planets;
+
+    this.#save();
+  }
+
+  get planetsLastUpdate() {
+    return this.#json?.planetsLastUpdate;
+  }
+
+  set planetsLastUpdate(planetsLastUpdate) {
+    this.#json.planetsLastUpdate = planetsLastUpdate;
+
+    this.#save();
+  }
+
   #save() {
     localStorage.setItem(localStorageKey, JSON.stringify(this.#json));
   }

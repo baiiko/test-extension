@@ -1,5 +1,6 @@
 import Data from '../services/data.js';
 import { createLink, redirect } from '../services/link.js';
+import PlanetList from '../components/planet-list.js';
 
 if (!Data.shipsData) {
   redirect({
@@ -11,3 +12,5 @@ if (!Data.shipsData) {
     })}`,
   });
 }
+
+PlanetList();
