@@ -1,4 +1,4 @@
-const OGIObserver = function () {
+function OGIObserver() {
   const MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
   return (element, callback, options = {}) => {
@@ -16,6 +16,6 @@ const OGIObserver = function () {
     // eslint-disable-next-line consistent-return
     return observer;
   };
-};
+}
 
 export default OGIObserver;

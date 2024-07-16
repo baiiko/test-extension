@@ -1,20 +1,27 @@
+const localStorageKey = 'test-data';
+
 class Data {
-    _json;
-    constructor() {
-        this._json = JSON.parse(localStorage.getItem("test-data")) || {
-            component: undefined
-        };
-    }
+  #json;
 
-    set component(component) {
-        this._json.component = component;
+  constructor() {
+    this.#json = JSON.parse(localStorage.getItem(localStorageKey)) || {
+      component: undefined,
+    };
+  }
 
-        this.#save();
-    }
+  get shipsData() {
+    return this.#json?.shipsData;
+  }
 
-    #save() {
-        localStorage.setItem("test-data", JSON.stringify(this._json));
-    }
+  set shipsData(shipsData) {
+    this.#json.shipsData = shipsData;
+
+    this.#save();
+  }
+
+  #save() {
+    localStorage.setItem(localStorageKey, JSON.stringify(this.#json));
+  }
 }
 
 export default new Data();
