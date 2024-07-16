@@ -32,7 +32,7 @@
     {
       "extension_ids": ["hfojakphgokgpbnejoobfamojbgolcbo"],
       "matches": ["<all_urls>"],
-      "resources": ["index.js", "assets/*", "pages/*","components/*", "services/*"]
+      "resources": ["index.js", "assets/*", "pages/*","components/*", "services/*", "templates/*"]
     }
   ]
 }
