@@ -39,9 +39,15 @@ function planetContentInfoRight(planet, isMoon) {
   const planetImg = document.createElement('img');
   planetImg.classList.add(
     'ogi-absolute',
+    'ogi-rounded-full',
     !isMoon ? '-ogi-right-2' : '-ogi-right-0.5',
     !isMoon ? '-ogi-bottom-2' : '-ogi-bottom-0.5',
   );
+
+  if (planet.id !== currentPlanet) {
+    planetImg.classList.add('hover:ogi-shadow-planet-img');
+  }
+
   planetImg.src = planet.image;
   element.appendChild(planetImg);
 
@@ -68,7 +74,7 @@ function planetContentInfo(planet, isMoon) {
     'ogi-rounded',
     'ogi-bg-gradient-to-r',
     'ogi-to-gradient-to',
-    'ogi-shadow-planet',
+    'ogi-shadow-planet-content',
   );
 
   if (currentPlanet === planet.id) {

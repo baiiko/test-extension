@@ -90,7 +90,7 @@ export default async function empire() {
     const checkDate = new Date();
     checkDate.setTime(checkDate.getTime() - 5 * 60 * 1000);
 
-    return !Data.planetsLastUpdate || Data.planetsLastUpdate < checkDate;
+    return !Data.planetsLastUpdate || new Date(Data.planetsLastUpdate) < checkDate;
   };
 
   if (needsToEmpireLoad()) {

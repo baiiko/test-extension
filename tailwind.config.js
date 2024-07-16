@@ -17,7 +17,8 @@ module.exports = {
         coords: 'rgb(153, 198, 245)',
       },
       boxShadow: {
-        planet: 'rgba(255, 255, 255, 0.07) 0px 1px inset, rgba(255, 255, 255, 0.03) 0px 16px inset',
+        'planet-content': 'rgba(255, 255, 255, 0.07) 0px 1px inset, rgba(255, 255, 255, 0.03) 0px 16px inset',
+        'planet-img': 'rgb(208, 129, 62) 0px 0px 0px 1px;',
       },
     },
   },
