@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.js',
+    './src/**/*.{js,svg}',
   ],
   theme: {
     extend: {
@@ -33,6 +33,25 @@ module.exports = {
         'planet-content': 'rgba(255, 255, 255, 0.07) 0px 1px inset, rgba(255, 255, 255, 0.03) 0px 16px inset',
         'planet-img': 'rgb(208, 129, 62) 0px 0px 0px 1px',
         menu: 'rgba(255, 255, 255, 0.07) 0px 1px inset',
+      },
+      keyframes: {
+        loader: {
+          '12.5%': {
+            'stroke-dasharray': '33.98873px, 242.77666px',
+            'stroke-dashoffset': '-26.70543px',
+          },
+          '43.75%': {
+            'stroke-dasharray': '84.97183px, 242.77666px',
+            'stroke-dashoffset': '-84.97183px',
+          },
+          '100%': {
+            'stroke-dasharray': '2.42777px, 242.77666px',
+            'stroke-dashoffset': '-240.34889px',
+          },
+        },
+      },
+      animation: {
+        loader: 'loader 1.6s linear infinite',
       },
     },
   },
