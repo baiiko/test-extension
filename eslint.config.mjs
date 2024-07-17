@@ -26,6 +26,11 @@ export default [
   // mimic ESLintRC-style extends
   ...compat.extends('eslint-config-airbnb-base'),
   {
+    languageOptions: {
+      globals: {
+        chrome: true,
+      }
+    },
     rules: {
       'import/no-named-as-default': 0,
       'import/no-named-as-default-member': 0,

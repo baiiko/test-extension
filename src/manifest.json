@@ -4,15 +4,14 @@
       "32": "assets/images/logo128.png"
     },
     "default_title": "Ogame Infinity"
-          },
+  },
   "content_scripts": [
     {
       "css": ["assets/css/global.min.css"],
       "exclude_matches": ["https://*.ogame.gameforge.com/game/admin2/*"],
       "js": ["index.js"],
       "matches": ["https://*.ogame.gameforge.com/game/*"],
-      "run_at": "document_start",
-      "world": "MAIN"
+      "run_at": "document_start"
     }
   ],
   "description": "OGI - To Ogame's infinity and beyond!",

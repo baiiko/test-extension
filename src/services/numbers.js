@@ -1,3 +1,7 @@
+import windowVariables from './window-variables.js';
+
+const LocalizationStrings = await windowVariables('LocalizationStrings');
+
 export default function toFormattedNumber(number, roundPrecision = null, units = false) {
   let value = number;
   let precision = roundPrecision;

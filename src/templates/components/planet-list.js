@@ -1,5 +1,6 @@
 import { redirect } from '../../services/link.js';
 import toFormattedNumber from '../../services/numbers.js';
+import lifeForms from '../../services/enum/life-forms.js';
 
 const currentPlanet = parseInt(document.querySelector('meta[name="ogame-planet-id"]').getAttribute('content'), 10);
 
@@ -34,7 +35,34 @@ function planetContentInfoLeft(planet, isMoon) {
 
 function planetContentInfoRight(planet, isMoon) {
   const element = document.createElement('div');
-  element.classList.add('ogi-grid', 'ogi-justify-items-center', 'ogi-place-items-center', 'ogi-basis-5/12');
+  element.classList.add(
+    'ogi-h-full',
+    'ogi-grid',
+    'ogi-justify-items-center',
+    'ogi-place-items-center',
+    'ogi-basis-5/12',
+  );
+
+  if (!isMoon) {
+    const planetLifeform = document.createElement('div');
+
+    const bgLifeForm = {
+      [`${lifeForms.human}`]: '!ogi-bg-lifeform1',
+      [`${lifeForms.rocktal}`]: '!ogi-bg-lifeform2',
+      [`${lifeForms.mecas}`]: '!ogi-bg-lifeform3',
+      [`${lifeForms.kaelesh}`]: '!ogi-bg-lifeform4',
+    };
+
+    planetLifeform.classList.add(
+      'lifeform-item-icon',
+      '!ogi-h-9',
+      '!ogi-w-9',
+      bgLifeForm[planet.lifeform],
+      'ogi-opacity-40',
+    );
+
+    element.appendChild(planetLifeform);
+  }
 
   const planetImg = document.createElement('img');
   planetImg.classList.add(
@@ -50,6 +78,23 @@ function planetContentInfoRight(planet, isMoon) {
 
   planetImg.src = planet.image;
   element.appendChild(planetImg);
+
+  if (planet.attack) {
+    const planetAlert = document.createElement('div');
+    planetAlert.classList.add(
+      'ogi-absolute',
+      'ogi-w-full',
+      'ogi-h-full',
+      'ogi-rounded-full',
+      'ogi-animate-ping',
+      'ogi-left-0',
+      'ogi-top-0',
+      'ogi-bg-red-700',
+      'ogi-opacity-70',
+    );
+
+    element.appendChild(planetAlert);
+  }
 
   const planetTimer = document.createElement('div');
   planetTimer.classList.add('ogi-absolute', 'ogi-right-0.5', 'ogi-top-0.5', 'ogi-w-1', 'ogi-h-1', 'ogi-bg-red-700', 'ogi-rounded-full');

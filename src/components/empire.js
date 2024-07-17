@@ -1,5 +1,6 @@
 import { createLink } from '../services/link.js';
 import Data from '../services/data.js';
+import lifeForms from '../services/enum/life-forms.js';
 
 const planets = {};
 
@@ -16,6 +17,18 @@ function loadContent(planetType) {
   )
     .then((rep) => rep.text())
     .then((content) => content.substring(content.indexOf('createImperiumHtml') + 47, content.indexOf('initEmpire') - 16));
+}
+
+function getLifeForm(groups, planet) {
+  const key = Object.keys(lifeForms).find((lifeformKey) => {
+    const groupBuilding = groups[`lifeform${lifeForms[lifeformKey]}buildings`];
+
+    return Object.values(groupBuilding).find(
+      (groupBuildingElement) => planet[groupBuildingElement] > 0,
+    );
+  });
+
+  return lifeForms?.[key] || undefined;
 }
 
 async function loadPlanets() {
@@ -46,6 +59,8 @@ async function loadPlanets() {
         planets[planet.id][group][groupElement] = parseInt(planet[groupElement], 10);
       });
     });
+
+    planets[planet.id].lifeform = getLifeForm(groups, planet);
 
     if (planet.moonID) hasMoon = true;
   });
@@ -98,4 +113,27 @@ export default async function empire() {
     Data.planets = planets;
     Data.planetsLastUpdate = new Date();
   }
+
+  const currentPlanet = parseInt(document.querySelector('meta[name="ogame-planet-id"]').getAttribute('content'), 10);
+  const currentPlanetType = document.querySelector('meta[name="ogame-planet-type"]').getAttribute('content');
+
+  if (currentPlanetType === 'moon') {
+    Object.values(Data.planets).forEach((planet) => {
+      if (planet?.moon?.id !== currentPlanet) return;
+
+      Data.planets[planet.id].moon.resources = {
+        metal: parseInt(document.getElementById('resources_metal').getAttribute('data-raw'), 10),
+        crystal: parseInt(document.getElementById('resources_crystal').getAttribute('data-raw'), 10),
+        deuterium: parseInt(document.getElementById('resources_deuterium').getAttribute('data-raw'), 10),
+      };
+    });
+  } else {
+    Data.planets[currentPlanet].resources = {
+      metal: parseInt(document.getElementById('resources_metal').getAttribute('data-raw'), 10),
+      crystal: parseInt(document.getElementById('resources_crystal').getAttribute('data-raw'), 10),
+      deuterium: parseInt(document.getElementById('resources_deuterium').getAttribute('data-raw'), 10),
+    };
+  }
+
+  Data.planets = { ...Data.planets };
 }
